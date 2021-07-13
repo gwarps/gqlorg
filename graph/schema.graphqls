@@ -1,0 +1,46 @@
+type Department {
+  id: ID!
+  name: String!
+  teams: [Team!]
+}
+
+type Team {
+  id: ID!
+  name: String!
+  deparment: Department!
+  services: [Service!]!
+}
+
+type Service {
+  id: ID!
+  name: String!
+  description: String!
+  team: Team!
+}
+
+type Query {
+  deparments: [Department!]!
+  services: [Service!]!
+  teams: [Team!]!
+}
+
+input NewDepartment {
+  name: String!
+}
+
+input NewTeam {
+  name: String!
+  deparmentID: String!
+}
+
+input NewService {
+  name: String!
+  description: String!
+  teamID: String!
+}
+
+type Mutation {
+  createDepartment(input: NewDepartment!): Department!
+  createTeam(input: NewTeam!): Team!
+  createService(input: NewService): Service!
+}
